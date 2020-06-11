@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios' //'axios-https-proxy-fix' //
 import { Message } from 'element-ui'
-import { BASE_CONFIG } from './base-config'
+import SERVER from './serverConfig'
 
 const SUCCESS_CODE = 0
 const BAD_REQUEST = 400
@@ -11,10 +11,13 @@ const TIME_OUT = 100 * 1000 // 请求超时 100s
 
 // 创建axios实例
 const request = axios.create({
-  baseURL: BASE_CONFIG.SERVER_URL, // api的base_url
-  timeout: TIME_OUT // 请求超时时间
+  baseURL: SERVER.SERVER_URL, // api的base_url
+  timeout: TIME_OUT, // 请求超时时间
+  // proxy: {
+  //   host: '10.0.2.54',
+  //   port: '9090'
+  // },
 })
-
 // 添加一个请求拦截器
 request.interceptors.request.use(
   config => {

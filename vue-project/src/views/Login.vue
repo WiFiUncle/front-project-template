@@ -1,6 +1,5 @@
 <template>
   <div class="login-main" :style="{backgroundImage: 'url(' + bgImgs[activeBgIndex] + ')'}">
-    <img :src="'url(' + bgImgs[activeBgIndex] + ')'" alt="">
     <div class="container">
       <div class="main_content">
         <p class="title">后台管理系统</p>
@@ -25,7 +24,8 @@
 </template>
 <script>
 
-//import md5 from 'md5'
+
+import md5 from 'md5'
 import { Utils } from '@/js/base'
 import LoginBg1 from '@/assets/images/login/login-bg-1.jpg'
 import LoginBg2 from '@/assets/images/login/login-bg-2.jpg'
@@ -57,7 +57,7 @@ export default {
       }
       this.$store.dispatch('login', {
         username: this.form.username,
-        password: this.form.pwd//md5(this.form.pwd)
+        password: md5(this.form.pwd) //this.form.pwd//
       }).then(rsp => {
         if (rsp.data) {
           const data = rsp.data
